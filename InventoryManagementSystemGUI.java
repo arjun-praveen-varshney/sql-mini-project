@@ -6,13 +6,13 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 public class InventoryManagementSystemGUI extends JFrame {
-    private ProductDAO productDAO;
+    private ProductCRUD productCRUD;
     private JTable productTable;
     private DefaultTableModel tableModel;
     private JTextField idField, nameField, quantityField, priceField;
 
     public InventoryManagementSystemGUI() {
-        productDAO = new ProductDAO();
+        productCRUD = new ProductCRUD();
         setTitle("Inventory Management System");
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -101,7 +101,7 @@ public class InventoryManagementSystemGUI extends JFrame {
 
     private void refreshTable() {
         tableModel.setRowCount(0);
-        List<Product> products = productDAO.getAllProducts();
+        List<Product> products = productCRUD.getAllProducts();
         for (Product product : products) {
             Object[] row = {product.getId(), product.getName(), product.getQuantity(), product.getPrice()};
             tableModel.addRow(row);
@@ -114,7 +114,7 @@ public class InventoryManagementSystemGUI extends JFrame {
         double price = Double.parseDouble(priceField.getText());
 
         Product product = new Product(0, name, quantity, price);
-        productDAO.addProduct(product);
+        productCRUD.addProduct(product);
         refreshTable();
         clearFields();
     }
@@ -126,14 +126,14 @@ public class InventoryManagementSystemGUI extends JFrame {
         double price = Double.parseDouble(priceField.getText());
 
         Product product = new Product(id, name, quantity, price);
-        productDAO.updateProduct(product);
+        productCRUD.updateProduct(product);
         refreshTable();
         clearFields();
     }
 
     private void deleteProduct() {
         int id = Integer.parseInt(idField.getText());
-        productDAO.deleteProduct(id);
+        productCRUD.deleteProduct(id);
         refreshTable();
         clearFields();
     }

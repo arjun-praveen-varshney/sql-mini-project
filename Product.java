@@ -4,7 +4,6 @@ public class Product {
     private int quantity;
     private double price;
 
-    // Constructor
     public Product(int id, String name, int quantity, double price) {
         this.id = id;
         this.name = name;
@@ -12,7 +11,6 @@ public class Product {
         this.price = price;
     }
 
-    // Getter and Setter methods
     public int getId() {
         return id;
     }

@@ -2,9 +2,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductDAO {
-    
-    // Insert new product
+public class ProductCRUD {
     public void addProduct(Product product) {
         String sql = "INSERT INTO Products (name, quantity, price) VALUES (?, ?, ?)";
 
@@ -23,7 +21,6 @@ public class ProductDAO {
         }
     }
 
-    // Get all products
     public List<Product> getAllProducts() {
         List<Product> products = new ArrayList<>();
         String sql = "SELECT * FROM Products";
@@ -49,7 +46,6 @@ public class ProductDAO {
         return products;
     }
 
-    // Update product
     public void updateProduct(Product product) {
         String sql = "UPDATE Products SET name = ?, quantity = ?, price = ? WHERE id = ?";
 
@@ -69,7 +65,6 @@ public class ProductDAO {
         }
     }
 
-    // Delete product
     public void deleteProduct(int id) {
         String sql = "DELETE FROM Products WHERE id = ?";
 
